@@ -10,6 +10,8 @@ color_palette pastel
 
 noundo
 
+youtube dzOI-q6Pdu8
+
 ========
 OBJECTS
 ========
@@ -104,6 +106,9 @@ Player = Player1 or Player2
 SOUNDS
 =======
 
+sfx0 12272302 (open portal)
+sfx1 70002908 (translocation)
+sfx2 57897500 (cake)
 
 ================
 COLLISIONLAYERS
@@ -120,27 +125,26 @@ RULES
 
 
 (portal)
-[ > Player1 | GateIn ][GateOut|No Wall] -> [|GateIn][GateOut|Player2]
-[ > Player2 | GateOut ][GateIn|No Wall] -> [|GateOut][GateIn|Player1]
+[ > Player1 | GateIn ][GateOut|No Wall] -> [|GateIn][GateOut|Player2] sfx1
+[ > Player2 | GateOut ][GateIn|No Wall] -> [|GateOut][GateIn|Player1] sfx1
 
 
-( close gatein)
+( open/close gatein)
 [ Action Player1|WallWeak][GateIn ] -> [ Player1|WallWeak][WallWeak ]
 [ Action Player1|][GateIn ] -> [ Player1|][WallWeak ]
-[ Action Player1 | WallWeak ] -> [ Player1 | GateIn ]
+[ Action Player1 | WallWeak ] -> [ Player1 | GateIn ] sfx0
 
-( close gateout)
+( open/close gateout)
 [ Action Player2|WallWeak][GateOut ] -> [ Player2|WallWeak][WallWeak ]
 [ Action Player2|][GateOut ] -> [ Player2|][WallWeak ]
-[ Action Player2 | WallWeak ] -> [ Player2 | GateOut ]
+[ Action Player2 | WallWeak ] -> [ Player2 | GateOut ] sfx0
 
-
+late [ Player Target] -> sfx2 Win
 
 ==============
 WINCONDITIONS
 ==============
 
-All Player on Target
 
 =======
 LEVELS
@@ -194,4 +198,3 @@ Message Programming LegrandK
 Message Thanks for play!
 
 Message (cc-by) Santa Clara Games
-
