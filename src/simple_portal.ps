@@ -1,0 +1,197 @@
+title Simple Portal Game
+author Ink, Nibrit & LegrandK
+homepage www.santaclaragames.com
+
+( verbose_logging )
+
+again_interval 2
+
+color_palette pastel           
+
+noundo
+
+========
+OBJECTS
+========
+
+Temp
+black
+
+Background
+lightgray
+00000
+00000
+00000
+00000
+00000
+
+
+Target
+White Brown REd blue Yellow 
+..4..
+..0..
+11111
+33333
+22222
+
+
+Wall
+DarkGray green
+00000
+00000
+00100
+00000
+00000
+
+WallWeak
+Gray white
+00000
+00000
+00100
+00000
+00000
+
+Player1
+Black Orange White Blue
+.000.
+.111.
+22222
+.333.
+.3.3.
+
+Player2
+Black Brown White orange
+.000.
+.111.
+22222
+.333.
+.3.3.
+
+
+GateIn
+Blue lightblue White
+00000
+01110
+01210
+01110
+00000
+
+GateOut
+Orange yellow White
+00000
+01110
+01210
+01110
+00000
+
+
+=======
+LEGEND
+=======
+
+. = Background
+# = Wall
+w = WallWeak
+P = Player1
+Q = Player2
+I = GateIn
+O = GateOut
+T = Target
+
+Player = Player1 or Player2
+
+=======
+SOUNDS
+=======
+
+
+================
+COLLISIONLAYERS
+================
+
+Temp
+Background
+Target
+Player1, Player2, Wall, GateIn, GateOut, WallWeak
+
+======
+RULES
+======
+
+
+(portal)
+[ > Player1 | GateIn ][GateOut|No Wall] -> [|GateIn][GateOut|Player2]
+[ > Player2 | GateOut ][GateIn|No Wall] -> [|GateOut][GateIn|Player1]
+
+
+( close gatein)
+[ Action Player1|WallWeak][GateIn ] -> [ Player1|WallWeak][WallWeak ]
+[ Action Player1|][GateIn ] -> [ Player1|][WallWeak ]
+[ Action Player1 | WallWeak ] -> [ Player1 | GateIn ]
+
+( close gateout)
+[ Action Player2|WallWeak][GateOut ] -> [ Player2|WallWeak][WallWeak ]
+[ Action Player2|][GateOut ] -> [ Player2|][WallWeak ]
+[ Action Player2 | WallWeak ] -> [ Player2 | GateOut ]
+
+
+
+==============
+WINCONDITIONS
+==============
+
+All Player on Target
+
+=======
+LEVELS
+=======
+
+Message Eat the cake!
+
+
+#....#
+o..t.#
+#....#
+######
+#....#
+#.p..w
+#....#
+
+
+#....#...
+o....w.t.
+#....#...
+###w##...
+#....#...
+#.p..w...
+#....#...
+
+
+.#.........#..#.
+##.#######.##.##
+...w..#..#......
+##.#..o.#####...
+.p.w..#.#...#.#.
+##.#....w.t.#...
+...######...w.#.
+##......#####.#.
+.###.##.......##
+
+
+Message Well done!
+
+
+Message Made with love in Donostia   Basque Coutry
+
+Message Global Game Jam 2014 
+
+Message Music Voltergueist
+
+Message Art InK, Nibrit
+
+Message Programming LegrandK
+
+Message Thanks for play!
+
+Message (cc-by) Santa Clara Games
+
